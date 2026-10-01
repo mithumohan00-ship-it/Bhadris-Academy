@@ -120,7 +120,7 @@ export default function WhyUs() {
           <div className="why-visual-frame reveal">
             <img
               src="/img/why-us-student.jpg"
-              alt="Engaged young student learning with curiosity and chalk doodles in classroom"
+              alt="Bhadri's Academy faculty teaching small batch classroom with active student participation"
               className="why-student-img"
               loading="lazy"
             />
