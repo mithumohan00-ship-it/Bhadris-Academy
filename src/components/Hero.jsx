@@ -1,7 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { DoodleArrow, DoodleSparkle, DoodleRays } from "./Doodles";
 
 export default function Hero() {
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        setIsVideoOpen(false);
+      }
+    };
+    if (isVideoOpen) {
+      window.addEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "hidden";
+    }
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [isVideoOpen]);
+
   return (
     <section className="hero">
       <div className="container">
@@ -32,9 +50,22 @@ export default function Hero() {
               <a href="#admissions" className="btn btn-primary">
                 Get Started
               </a>
-              <a href="#why-us" className="btn btn-secondary">
+              <button
+                type="button"
+                className="btn btn-secondary hero-video-trigger"
+                onClick={() => setIsVideoOpen(true)}
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="hero-play-icon"
+                >
+                  <polygon points="5 3 19 12 5 21" />
+                </svg>
                 Explore Why Us
-              </a>
+              </button>
             </div>
 
             {/* Hero Floating Badges */}
@@ -102,6 +133,42 @@ export default function Hero() {
           </div>
         </div>
       </div>
+
+      {/* Video Modal: Explore Why Us Video Tour */}
+      {isVideoOpen && (
+        <div
+          className="hero-video-modal-backdrop"
+          onClick={() => setIsVideoOpen(false)}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Why Us Video Tour"
+        >
+          <div
+            className="hero-video-modal-container"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              className="hero-video-close-btn"
+              onClick={() => setIsVideoOpen(false)}
+              aria-label="Close video"
+            >
+              &times;
+            </button>
+            <div className="hero-video-player-frame">
+              <video
+                src="/videos/explore-why-us.mp4"
+                controls
+                autoPlay
+                playsInline
+                className="hero-tour-video"
+              >
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
