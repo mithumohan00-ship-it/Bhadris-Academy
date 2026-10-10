@@ -10,7 +10,33 @@ export default function BentoStats() {
   });
 
   const [hasAnimated, setHasAnimated] = useState(false);
+  const [activeCampusIndex, setActiveCampusIndex] = useState(0);
   const containerRef = useRef(null);
+
+  const campuses = [
+    {
+      id: "branch-1",
+      number: "Branch 1",
+      name: "Bagalagunte Campus",
+      shortName: "Bagalagunte",
+      mapSrc: "https://maps.google.com/maps?q=13.058481,77.5033869&hl=en&z=16&output=embed",
+      titleMap: "Bhadri's Academy Bagalagunte Campus Map",
+      landmark: "78, Behind Muneshwara Temple",
+      address: "10th Cross, Road 58, Near Police Station, Bagalagunte, Bengaluru, Karnataka 560073",
+      directionsUrl: "https://www.google.com/maps/dir/13.05854,77.503488/Bhadri's+academy,+police+station,+78,+Behind+Muneshwara+temple,10th+cross,+road+58,+Bagalagunte,+Bengaluru,+Karnataka+560073/@13.0586465,77.5032027,90m/data=!3m1!1e3!4m10!4m9!1m1!4e1!1m5!1m1!1s0x3bae23450330f41d:0xf347a78e23121dd1!2m2!1d77.5033869!2d13.058481!3e0",
+    },
+    {
+      id: "branch-2",
+      number: "Branch 2",
+      name: "Sidedahalli Campus",
+      shortName: "Sidedahalli",
+      mapSrc: "https://maps.google.com/maps?q=13.062447,77.497673&hl=en&z=16&output=embed",
+      titleMap: "Bhadri's Academy Sidedahalli Campus Map",
+      landmark: "Near Sidedahalli Main Road",
+      address: "(13°03'44.8\"N 77°29'51.6\"E), Sidedahalli, Bengaluru, Karnataka 560073",
+      directionsUrl: "https://www.google.com/maps/place/13%C2%B003'44.8%22N+77%C2%B029'51.6%22E/@13.0614407,77.48499,4435m/data=!3m1!1e3!4m4!3m3!8m2!3d13.062447!4d77.497673!18m1!1e1",
+    },
+  ];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -136,7 +162,8 @@ export default function BentoStats() {
             </p>
           </div>
 
-          <div className="campuses-grid">
+          {/* Desktop Layout: 2 Separate Side-by-Side Cards (Screens > 860px) */}
+          <div className="campuses-grid campuses-desktop-grid">
             {/* Campus 1: Bagalagunte */}
             <div className="campus-card glass-hover">
               <div className="campus-card-header">
@@ -216,6 +243,68 @@ export default function BentoStats() {
                   </svg>
                   Get Directions on Google Maps
                 </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Mobile Unified Layout: Single Card with Top Map + Stacked Branch Boxes (Screens <= 860px) */}
+          <div className="campuses-mobile-unified">
+            <div className="campus-mobile-unified-card">
+              {/* Single Top Map */}
+              <div className="campus-mobile-map-frame">
+                <iframe
+                  title={campuses[activeCampusIndex].titleMap}
+                  src={campuses[activeCampusIndex].mapSrc}
+                  className="campus-iframe"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+                <div className="campus-mobile-map-overlay-badge">
+                  <span className="campus-live-dot" />
+                  Showing: {campuses[activeCampusIndex].name}
+                </div>
+              </div>
+
+              {/* Stacked Branch Boxes Under Map */}
+              <div className="campus-mobile-branches-stack">
+                {campuses.map((campus, idx) => {
+                  const isSelected = activeCampusIndex === idx;
+                  return (
+                    <div
+                      key={campus.id}
+                      className={`campus-mobile-branch-box ${isSelected ? "selected-branch" : ""}`}
+                      onClick={() => setActiveCampusIndex(idx)}
+                      role="button"
+                      tabIndex={0}
+                    >
+                      <div className="campus-mobile-branch-head">
+                        <span className={`branch-bullet-indicator ${isSelected ? "active" : ""}`} />
+                        <div className="campus-mobile-branch-name-col">
+                          <span className="branch-number-label">{campus.number}</span>
+                          <h4 className="branch-display-name">{campus.name}</h4>
+                        </div>
+                      </div>
+
+                      <div className="campus-mobile-branch-body">
+                        <p className="campus-mobile-branch-addr">
+                          <strong>{campus.landmark}</strong>, {campus.address}
+                        </p>
+                        <a
+                          href={campus.directionsUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn btn-primary campus-mobile-dir-btn"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <polygon points="3 11 22 2 13 21 11 13 3 11" />
+                          </svg>
+                          Get Directions on Google Maps
+                        </a>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>

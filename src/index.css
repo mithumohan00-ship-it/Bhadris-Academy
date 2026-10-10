@@ -1496,10 +1496,183 @@ img {
   border-radius: var(--radius-pill);
 }
 
+/* ==========================================
+   MOBILE UNIFIED CAMPUSES LAYOUT
+   ========================================== */
+.campuses-desktop-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.2rem;
+}
+
+.campuses-mobile-unified {
+  display: none;
+}
+
+.campus-mobile-unified-card {
+  background-color: var(--white);
+  border: 1.5px solid var(--line);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 12px 35px rgba(20, 38, 75, 0.06);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.campus-mobile-map-frame {
+  width: 100%;
+  height: 260px;
+  border-radius: 18px;
+  overflow: hidden;
+  position: relative;
+  background: #e2e8f0;
+  border: 1.5px solid var(--line);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.campus-mobile-map-overlay-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(20, 38, 75, 0.92);
+  color: var(--white);
+  backdrop-filter: blur(8px);
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid rgba(198, 167, 94, 0.4);
+  z-index: 2;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.campus-live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gold-bright);
+  animation: pulseDot 2s infinite;
+}
+
+.campus-mobile-branches-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.campus-mobile-branch-box {
+  background: var(--off);
+  border: 1.5px solid var(--line);
+  border-radius: 16px;
+  padding: 1.15rem 1.25rem;
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.campus-mobile-branch-box:hover {
+  border-color: rgba(46, 111, 183, 0.5);
+  transform: translateY(-2px);
+}
+
+.campus-mobile-branch-box.selected-branch {
+  background: #ffffff;
+  border-color: var(--blue);
+  box-shadow: 0 6px 20px rgba(46, 111, 183, 0.12);
+}
+
+.campus-mobile-branch-head {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.branch-bullet-indicator {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--ink);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+.branch-bullet-indicator.active {
+  border-color: var(--blue);
+  background: var(--blue);
+  box-shadow: 0 0 0 3px rgba(46, 111, 183, 0.2);
+}
+
+.branch-bullet-indicator.active::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ffffff;
+}
+
+.campus-mobile-branch-name-col {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.branch-number-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--blue);
+}
+
+.branch-display-name {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--navy-deep);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.campus-mobile-branch-body {
+  padding-left: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.campus-mobile-branch-addr {
+  font-size: 0.88rem;
+  color: var(--text-body);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.campus-mobile-branch-addr strong {
+  color: var(--navy-deep);
+}
+
+.campus-mobile-dir-btn {
+  font-size: 0.88rem;
+  padding: 0.65rem 1.1rem;
+  width: 100%;
+}
+
 @media (max-width: 860px) {
-  .campuses-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+  .campuses-desktop-grid {
+    display: none !important;
+  }
+  .campuses-mobile-unified {
+    display: block !important;
   }
   .campuses-showcase {
     margin-top: 3.5rem;
@@ -1508,12 +1681,23 @@ img {
   .campuses-showcase-title {
     font-size: 1.85rem;
   }
-  .campus-card-header,
-  .campus-details {
-    padding: 1.5rem 1.4rem;
+}
+
+@media (max-width: 480px) {
+  .campus-mobile-unified-card {
+    padding: 1rem;
   }
-  .campus-map-frame {
+  .campus-mobile-map-frame {
     height: 220px;
+  }
+  .campus-mobile-branch-box {
+    padding: 1rem 0.95rem;
+  }
+  .campus-mobile-branch-body {
+    padding-left: 1.5rem;
+  }
+  .branch-display-name {
+    font-size: 1.05rem;
   }
 }
 
