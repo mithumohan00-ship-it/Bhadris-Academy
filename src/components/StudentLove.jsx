@@ -4,7 +4,24 @@ import { DoodleSparkle } from "./Doodles";
 export default function StudentLove() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [cardsPerView, setCardsPerView] = useState(3);
+  const [activeVideo, setActiveVideo] = useState(null);
   const touchStartXRef = useRef(0);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        setActiveVideo(null);
+      }
+    };
+    if (activeVideo) {
+      window.addEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "hidden";
+    }
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [activeVideo]);
 
   const videoReviews = [
     {
@@ -279,21 +296,32 @@ export default function StudentLove() {
                 className="reels-carousel-slide"
                 style={{ width: `${100 / cardsPerView}%` }}
               >
-                <div className="reel-card-container">
-
-                  {/* Native HTML5 Video Player: Just video with border, nothing else */}
-                  <div className="reel-video-wrapper">
-                    <video
-                      src={item.videoSrc}
-                      poster={item.poster}
-                      controls
-                      playsInline
-                      preload="metadata"
-                      className="reel-html5-video"
-                      onPlay={handleVideoPlay}
-                    >
-                      Your browser does not support the video tag.
-                    </video>
+                <div
+                  className="reel-card-container"
+                  onClick={() => setActiveVideo(item)}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`Play testimonial video`}
+                >
+                  <div className="reel-poster-wrapper">
+                    <img
+                      src={item.poster}
+                      alt="Student and parent video testimonial"
+                      className="reel-poster-img"
+                      loading="lazy"
+                    />
+                    <div className="reel-play-overlay">
+                      <div className="reel-play-btn-circle">
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                        >
+                          <polygon points="6 4 20 12 6 20" />
+                        </svg>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -316,8 +344,44 @@ export default function StudentLove() {
           ))}
         </div>
 
-
       </div>
+
+      {/* Testimonial Video Modal: Plays like Hero Video */}
+      {activeVideo && (
+        <div
+          className="hero-video-modal-backdrop testimonial-modal-backdrop"
+          onClick={() => setActiveVideo(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Student and Parent Testimonial Video"
+        >
+          <div
+            className="testimonial-video-modal-container"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              className="hero-video-close-btn"
+              onClick={() => setActiveVideo(null)}
+              aria-label="Close video testimonial"
+            >
+              &times;
+            </button>
+            <div className="testimonial-video-player-frame">
+              <video
+                src={activeVideo.videoSrc}
+                poster={activeVideo.poster}
+                controls
+                autoPlay
+                playsInline
+                className="testimonial-modal-video"
+              >
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
