@@ -10,36 +10,42 @@ export default function WhyUs() {
       orange: false,
       title: "Identification & Achievement",
       desc: "We pinpoint each student's strengths and learning gaps from day one, charting an individualised blueprint for consistent academic achievement.",
+      img: "/img/why-us/why-us-1.jpg",
     },
     {
       num: "02",
       orange: true,
       title: "Personalised Learning System",
       desc: "Lesson roadmaps are tailored to each student's pace, board requirements, and conceptual needs rather than forced into a rigid one-size-fits-all curriculum.",
+      img: "/img/why-us/why-us-2.jpg",
     },
     {
       num: "03",
       orange: false,
       title: "Small Batch — 12:1 Ratio",
       desc: "With an intentional cap of 12 students per batch, every learner receives active questioning, continuous attention, and immediate doubt resolution.",
+      img: "/img/why-us/why-us-3.jpg",
     },
     {
       num: "04",
       orange: true,
       title: "Result-Oriented Teaching",
       desc: "Concept mastery is validated with periodic chapter checkpoints, revision cycles, previous year exam papers, and simulated mock examinations.",
+      img: "/img/why-us/why-us-4.jpg",
     },
     {
       num: "05",
       orange: false,
       title: "Communication Skill Focus",
       desc: "Students are encouraged to explain answers in their own words, instilling authentic analytical reasoning and the ability to articulate thought clearly.",
+      img: "/img/why-us/why-us-5.jpg",
     },
     {
       num: "06",
       orange: true,
       title: "Honest Progress Reports",
       desc: "Transparent weekly and monthly feedback sessions keep parents clearly informed of their child's improvements, focus areas, and milestones.",
+      img: "/img/why-us/why-us-6.jpg",
     },
   ];
 
@@ -116,14 +122,17 @@ export default function WhyUs() {
 
         {/* 2-Column Showcase: Student Visual with Doodles + 3D Fanned Card Deck */}
         <div className="why-layout-grid">
-          {/* Left: Authentic Student Study Visual with Chalk Doodles */}
+          {/* Left: Authentic Student Study Visual with Fade Transition */}
           <div className="why-visual-frame reveal">
-            <img
-              src="/img/why-us-student.jpg"
-              alt="Bhadri's Academy faculty teaching small batch classroom with active student participation"
-              className="why-student-img"
-              loading="lazy"
-            />
+            {advantages.map((item, idx) => (
+              <img
+                key={item.num}
+                src={item.img}
+                alt={`${item.title} - Bhadri's Academy classroom`}
+                className={`why-student-img ${idx === activeIndex ? "active" : ""}`}
+                loading={idx === 0 ? "eager" : "lazy"}
+              />
+            ))}
           </div>
 
           {/* Right: 3D Fanned Card Deck Presentation (Original White Cards Theme) */}
