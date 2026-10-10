@@ -2252,73 +2252,55 @@ main {
 
 .video-modal-close-btn {
   position: absolute;
-  top: 1rem;
-  right: 1.25rem;
-  background: rgba(255, 255, 255, 0.15);
-  border: none;
+  top: -16px;
+  right: -16px;
+  background: rgba(10, 20, 42, 0.95);
+  border: 1.5px solid rgba(198, 167, 94, 0.7);
   color: var(--white);
-  font-size: 2rem;
+  font-size: 1.6rem;
   line-height: 1;
-  width: 40px;
-  height: 40px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 10;
+  z-index: 25;
   transition: all var(--transition-fast);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
 }
 
 .video-modal-close-btn:hover {
   background: var(--gold-bright);
   color: var(--navy-deep);
+  transform: scale(1.1);
 }
 
-/* Instagram Cinema Mode Modal */
+/* Instagram Cinema Mode Modal: Pure video with border, nothing else */
 .instagram-cinema-modal {
-  width: 100%;
-  max-width: 480px;
-  background: var(--navy-deep);
-  border: 1px solid rgba(198, 167, 94, 0.45);
-  border-radius: 24px;
-  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.8);
-  padding: 1.75rem;
+  width: auto;
+  max-width: 440px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
   display: flex;
   flex-direction: column;
   position: relative;
   max-height: 90vh;
-  overflow-y: auto;
-}
-
-.cinema-modal-header {
-  margin-bottom: 1.25rem;
-  padding-right: 2.5rem;
-}
-
-.cinema-modal-header .modal-title {
-  font-family: var(--font-display);
-  font-size: 1.35rem;
-  font-weight: 600;
-  color: #ffffff;
-  margin: 0.5rem 0 0.25rem 0;
-}
-
-.cinema-modal-header .modal-sub-meta {
-  font-size: 0.84rem;
-  color: rgba(255, 255, 255, 0.7);
-  margin: 0;
 }
 
 .cinema-video-frame {
   width: 100%;
   aspect-ratio: 9 / 16;
-  max-height: 560px;
-  border-radius: 16px;
+  max-height: 84vh;
+  border-radius: 20px;
   overflow: hidden;
   background: #000000;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
-  margin-bottom: 1.25rem;
+  border: 2px solid rgba(198, 167, 94, 0.7);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.9), 0 0 35px rgba(198, 167, 94, 0.25);
+  margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2332,34 +2314,16 @@ main {
   display: block;
 }
 
-.cinema-modal-cta {
-  display: flex;
-  gap: 0.85rem;
-  justify-content: flex-end;
-}
-
-.btn-secondary-light {
-  background: transparent;
-  color: var(--white);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  padding: 0.75rem 1.5rem;
-  border-radius: var(--radius-pill);
-  font-weight: 600;
-  cursor: pointer;
-  transition: all var(--transition-fast);
-}
-
-.btn-secondary-light:hover {
-  border-color: var(--white);
-  background: rgba(255, 255, 255, 0.1);
-}
-
 @media (max-width: 640px) {
   .reel-video-wrapper {
     max-height: 480px;
   }
   .cinema-video-frame {
     max-height: 480px;
+  }
+  .video-modal-close-btn {
+    top: 8px;
+    right: 8px;
   }
   .student-love-section {
     padding: 4.5rem 0;

@@ -360,15 +360,7 @@ export default function StudentLove() {
               &times;
             </button>
 
-            <div className="cinema-modal-header">
-              <span className="modal-role-pill">{activeVideo.category}</span>
-              <h3 className="modal-title">{activeVideo.title}</h3>
-              <p className="modal-sub-meta">
-                {activeVideo.speakerTitle}
-              </p>
-            </div>
-
-            {/* Direct Video Player in Modal */}
+            {/* Direct Video Player in Modal: Just video with border, nothing else */}
             <div className="cinema-video-frame">
               <video
                 src={activeVideo.videoSrc}
@@ -381,23 +373,6 @@ export default function StudentLove() {
               >
                 Your browser does not support the video tag.
               </video>
-            </div>
-
-            <div className="cinema-modal-cta">
-              <a
-                href="#admissions"
-                className="btn btn-primary"
-                onClick={() => setActiveVideo(null)}
-              >
-                Book Free Demo Class
-              </a>
-              <button
-                type="button"
-                className="btn btn-secondary-light"
-                onClick={() => setActiveVideo(null)}
-              >
-                Close Video
-              </button>
             </div>
           </div>
         </div>
