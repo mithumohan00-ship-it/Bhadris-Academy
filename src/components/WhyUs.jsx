@@ -114,10 +114,6 @@ export default function WhyUs() {
             </h2>
             <DoodleArrow />
           </div>
-          <p className="section-subtitle">
-            When schools and students have dependable access to experienced mentors, learning
-            becomes structured, predictable, and consistently rewarding.
-          </p>
         </div>
 
         {/* 2-Column Showcase: Student Visual with Doodles + 3D Fanned Card Deck */}

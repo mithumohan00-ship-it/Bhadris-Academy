@@ -246,10 +246,6 @@ export default function StudentLove() {
             Students Love <span className="highlight-gold">Bhadri&apos;s Academy</span>{" "}
             <DoodleSparkle />
           </h2>
-          <p className="section-subtitle text-light-muted">
-            Watch authentic video reviews from our parents and students across Bengaluru —
-            sharing their transformation from conceptual doubts to subject mastery and top board scores.
-          </p>
         </div>
 
         {/* Carousel Header Controls */}

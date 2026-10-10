@@ -11,11 +11,6 @@ export default function Experience() {
             <h2 className="section-title">An Easier Way to Master Concepts and Excel</h2>
             <DoodleArrow />
           </div>
-          <p className="section-subtitle">
-            When educational support is tailored to individual starting points, students gain
-            genuine comprehension rather than test-day anxiety. More classes are engaging and
-            student learning stays on track.
-          </p>
         </div>
 
         <div className="pillars-grid reveal-stagger">

@@ -87,10 +87,6 @@ export default function BentoStats() {
         <div className="bento-header-wrap reveal">
           <span className="eyebrow">Local Reach & Excellence</span>
           <h2 className="section-title">Academic Footprint in Bengaluru</h2>
-          <p className="section-subtitle">
-            A snapshot of our local tuition presence, specialized batch sizes, and comprehensive
-            board support across Bengaluru.
-          </p>
         </div>
 
         <div className="bento-container" ref={containerRef}>
@@ -156,10 +152,6 @@ export default function BentoStats() {
           <div className="campuses-showcase-header">
             <span className="eyebrow">Visit Our Branches</span>
             <h3 className="campuses-showcase-title">Two Convenient Campuses in Bengaluru</h3>
-            <p className="campuses-showcase-subtitle">
-              Drop by our modern learning centers for in-person parent consultations, faculty interactions,
-              and free diagnostic baseline assessments.
-            </p>
           </div>
 
           {/* Desktop Layout: 2 Separate Side-by-Side Cards (Screens > 860px) */}
