@@ -151,6 +151,35 @@ export default function Navbar({ logoVisible = true }) {
           {/* Right balancing spacer so the navbar pill is mathematically centered */}
           <div className="header-nav-spacer" aria-hidden="true" />
         </div>
+
+        {/* Top Marquee Ribbon: "Right method + Right results" (Only at Top) */}
+        <div className="header-marquee-wrap" aria-label="Academy philosophy ticker">
+          <div className="header-marquee-pill">
+            <marquee
+              className="top-marquee"
+              behavior="scroll"
+              direction="left"
+              scrollamount="6"
+              onMouseEnter={(e) => e.currentTarget.stop()}
+              onMouseLeave={(e) => e.currentTarget.start()}
+            >
+              <span className="marquee-content-row">
+                <span className="marquee-text">Right method + Right results</span>
+                <span className="marquee-sep">✦</span>
+                <span className="marquee-text">Right method + Right results</span>
+                <span className="marquee-sep">✦</span>
+                <span className="marquee-text">Right method + Right results</span>
+                <span className="marquee-sep">✦</span>
+                <span className="marquee-text">Right method + Right results</span>
+                <span className="marquee-sep">✦</span>
+                <span className="marquee-text">Right method + Right results</span>
+                <span className="marquee-sep">✦</span>
+                <span className="marquee-text">Right method + Right results</span>
+                <span className="marquee-sep">✦</span>
+              </span>
+            </marquee>
+          </div>
+        </div>
       </header>
 
       {/* Mobile Drawer Backdrop */}
