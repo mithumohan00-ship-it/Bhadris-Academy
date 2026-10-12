@@ -372,7 +372,7 @@ img {
   align-items: center;
   justify-content: center;
   width: 104px;
-  height: 142px;
+  height: 104px;
   transition: all var(--transition-smooth);
   flex-shrink: 0;
 }
@@ -404,7 +404,7 @@ img {
 
 .footer-logo-badge {
   width: 112px;
-  height: 156px;
+  height: 112px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -2190,7 +2190,7 @@ main {
 
   .standalone-logo-outside .logo-badge {
     width: 68px;
-    height: 90px;
+    height: 68px;
   }
 
   .nav-container.fluid-glass-pill {
