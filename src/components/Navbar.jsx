@@ -22,21 +22,51 @@ export default function Navbar({ logoVisible = true }) {
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [isDrawerOpen]);
 
+  useEffect(() => {
+    if (isDrawerOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isDrawerOpen]);
+
   const navLinks = [
     { label: "Methodology", href: "#experience" },
     { label: "About", href: "#about" },
     { label: "Why Us", href: "#why-us" },
-    { label: "Campuses", href: "#bengaluru" },
+    { label: "Campuses", href: "#campuses" },
     { label: "Reviews", href: "#reviews" },
-    { label: "Contact", href: "#admissions" },
   ];
+
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
+    setIsDrawerOpen(false);
+    const target = document.querySelector(href);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+      if (window.history.pushState) {
+        window.history.pushState(null, "", href);
+      }
+    }
+  };
 
   return (
     <>
       <header className={`header ${isScrolled ? "scrolled" : ""}`}>
         <div className="container header-outer-container">
           {/* Standalone Logo Emblem on the left, outside the navbar */}
-          <a href="#" className="standalone-logo-outside" aria-label="Bhadri's Academy Home">
+          <a
+            href="#"
+            className="standalone-logo-outside"
+            aria-label="Bhadri's Academy Home"
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+          >
             <div
               className="logo-badge"
               style={{
@@ -60,6 +90,10 @@ export default function Navbar({ logoVisible = true }) {
                 transition:
                   "opacity 0.35s ease-out 0.05s, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) 0.05s",
               }}
+              onClick={(e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
             >
               BHADRI&apos;S <span>ACADEMY</span>
             </a>
@@ -69,7 +103,11 @@ export default function Navbar({ logoVisible = true }) {
               <ul className="nav-links">
                 {navLinks.map((link) => (
                   <li key={link.label}>
-                    <a href={link.href} className="nav-link">
+                    <a
+                      href={link.href}
+                      className="nav-link"
+                      onClick={(e) => handleNavClick(e, link.href)}
+                    >
                       {link.label}
                     </a>
                   </li>
@@ -79,7 +117,12 @@ export default function Navbar({ logoVisible = true }) {
 
             {/* Nav Action CTA */}
             <div className="nav-actions">
-              <a href="#admissions" className="btn btn-primary" id="navCta">
+              <a
+                href="#admissions"
+                className="btn btn-primary"
+                id="navCta"
+                onClick={(e) => handleNavClick(e, "#admissions")}
+              >
                 BOOK A CALL
               </a>
             </div>
@@ -107,27 +150,69 @@ export default function Navbar({ logoVisible = true }) {
         </div>
       </header>
 
+      {/* Mobile Drawer Backdrop */}
+      {isDrawerOpen && (
+        <div
+          className="mobile-drawer-backdrop"
+          onClick={() => setIsDrawerOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+
       {/* Mobile Drawer */}
-      <div className={`mobile-drawer ${isDrawerOpen ? "open" : ""}`}>
+      <div
+        className={`mobile-drawer ${isDrawerOpen ? "open" : ""}`}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Mobile Navigation"
+      >
+        {/* Drawer Header with Title & Explicit Close Button */}
+        <div className="mobile-drawer-header">
+          <div className="mobile-drawer-brand">
+            BHADRI&apos;S <span>ACADEMY</span>
+          </div>
+          <button
+            type="button"
+            className="mobile-drawer-close"
+            onClick={() => setIsDrawerOpen(false)}
+            aria-label="Close menu"
+          >
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="6" />
+            </svg>
+          </button>
+        </div>
+
         <ul className="mobile-nav-links">
           {navLinks.map((link) => (
             <li key={link.label}>
               <a
                 href={link.href}
                 className="mobile-nav-link"
-                onClick={() => setIsDrawerOpen(false)}
+                onClick={(e) => handleNavClick(e, link.href)}
               >
                 {link.label}
               </a>
             </li>
           ))}
         </ul>
-        <div style={{ marginTop: "auto" }}>
+
+        <div style={{ marginTop: "auto", paddingTop: "1.5rem" }}>
           <a
             href="#admissions"
             className="btn btn-primary"
             style={{ width: "100%", textAlign: "center" }}
-            onClick={() => setIsDrawerOpen(false)}
+            onClick={(e) => handleNavClick(e, "#admissions")}
           >
             BOOK A CALL
           </a>

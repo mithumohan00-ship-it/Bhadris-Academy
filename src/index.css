@@ -310,12 +310,27 @@ img {
    ========================================== */
 .header {
   position: fixed;
-  top: 1.25rem;
+  top: 0.65rem;
   left: 0;
   width: 100%;
   z-index: 100;
   pointer-events: none;
   transition: all var(--transition-smooth);
+}
+
+.header.scrolled {
+  top: 0.45rem;
+}
+
+.section,
+#experience,
+#about,
+#why-us,
+#campuses,
+#bengaluru,
+#reviews,
+#admissions {
+  scroll-margin-top: 5.5rem;
 }
 
 .header-outer-container {
@@ -598,6 +613,22 @@ img {
   transition: all var(--transition-smooth);
 }
 
+/* Mobile Drawer Backdrop */
+.mobile-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(14, 28, 58, 0.45);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 1001;
+  opacity: 0;
+  animation: drawerFadeIn 0.25s forwards ease-out;
+}
+
+@keyframes drawerFadeIn {
+  to { opacity: 1; }
+}
+
 /* Mobile Drawer */
 .mobile-drawer {
   position: fixed;
@@ -609,18 +640,62 @@ img {
   background-color: rgba(247, 247, 245, 0.98);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  z-index: 101;
-  padding: 5.5rem 2rem 2.5rem;
+  z-index: 1002;
+  padding: 1.5rem 1.75rem 2rem;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  box-shadow: -10px 0 35px rgba(20, 38, 75, 0.15);
+  box-shadow: -10px 0 35px rgba(20, 38, 75, 0.2);
   border-left: 1px solid var(--line);
-  transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: right 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .mobile-drawer.open {
   right: 0;
+}
+
+.mobile-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(20, 38, 75, 0.08);
+}
+
+.mobile-drawer-brand {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--navy-deep);
+  text-transform: uppercase;
+}
+
+.mobile-drawer-brand span {
+  color: var(--gold);
+}
+
+.mobile-drawer-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(20, 38, 75, 0.12);
+  background: var(--white);
+  color: var(--navy-deep);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: 0 2px 8px rgba(20, 38, 75, 0.06);
+}
+
+.mobile-drawer-close:hover,
+.mobile-drawer-close:active {
+  background: var(--navy-deep);
+  color: var(--white);
+  border-color: var(--navy-deep);
+  transform: scale(1.05);
 }
 
 .mobile-nav-links {
@@ -1880,7 +1955,8 @@ img {
   border: 1.5px solid var(--line);
   background-color: var(--white);
   color: var(--navy-deep);
-  font-size: 0.96rem;
+  font-size: 1rem;
+  font-family: var(--font-body);
   transition: all var(--transition-fast);
 }
 
@@ -2088,16 +2164,6 @@ main {
     gap: 3rem;
   }
 
-  .why-layout-grid {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-
-  .why-visual-frame {
-    max-width: 380px;
-    margin: 0 auto;
-  }
-
   .bento-container {
     grid-template-columns: 1fr;
   }
@@ -2114,7 +2180,7 @@ main {
 
 @media (max-width: 980px) {
   .header {
-    top: 0.75rem;
+    top: 0.45rem;
   }
 
   .header-outer-container {

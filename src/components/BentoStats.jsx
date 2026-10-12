@@ -148,7 +148,7 @@ export default function BentoStats() {
         </div>
 
         {/* Campuses & Branch Locations Showcase */}
-        <div className="campuses-showcase reveal">
+        <div className="campuses-showcase reveal" id="campuses">
           <div className="campuses-showcase-header">
             <span className="eyebrow">Visit Our Branches</span>
             <h3 className="campuses-showcase-title">Two Convenient Campuses in Bengaluru</h3>
