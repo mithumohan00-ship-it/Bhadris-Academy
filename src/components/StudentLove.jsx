@@ -242,10 +242,6 @@ export default function StudentLove() {
             <DoodleSparkle size={16} />
             Student & Parent Experiences
           </span>
-          <h2 className="section-title text-white">
-            Students Love <span className="highlight-gold">Bhadri&apos;s Academy</span>{" "}
-            <DoodleSparkle />
-          </h2>
         </div>
 
         {/* Carousel Header Controls */}
