@@ -238,10 +238,9 @@ export default function StudentLove() {
       <div className="container">
         {/* Section Header */}
         <div className="student-love-header reveal">
-          <span className="eyebrow eyebrow-gold">
-            <DoodleSparkle size={16} />
-            Student & Parent Experiences
-          </span>
+          <h2 className="section-title text-white">
+            Student &amp; Parent <span className="highlight-gold">Experiences</span>
+          </h2>
         </div>
 
         {/* Carousel Header Controls */}

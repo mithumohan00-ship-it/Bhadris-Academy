@@ -47,19 +47,13 @@ export default function Footer() {
               across Bengaluru.
             </p>
             <div className="social-links">
-              <a href="#" className="social-link" aria-label="Facebook">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-                </svg>
-              </a>
-              <a href="#" className="social-link" aria-label="Instagram">
+              <a
+                href="https://www.instagram.com/bhadris_academy/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-link"
+                aria-label="Instagram"
+              >
                 <svg
                   viewBox="0 0 24 24"
                   fill="none"
@@ -73,7 +67,11 @@ export default function Footer() {
                   <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
                 </svg>
               </a>
-              <a href="#" className="social-link" aria-label="LinkedIn">
+              <a
+                href="mailto:bhadrisacademy21@gmail.com"
+                className="social-link"
+                aria-label="Email"
+              >
                 <svg
                   viewBox="0 0 24 24"
                   fill="none"
@@ -82,9 +80,8 @@ export default function Footer() {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 >
-                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                  <rect x="2" y="9" width="4" height="12" />
-                  <circle cx="4" cy="4" r="2" />
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                  <polyline points="22,6 12,13 2,6" />
                 </svg>
               </a>
             </div>
@@ -154,10 +151,10 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="mailto:hello@bhadrisacademy.in"
+                  href="mailto:bhadrisacademy21@gmail.com"
                   style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}
                 >
-                  <span>✉</span> hello@bhadrisacademy.in
+                  <span>✉</span> bhadrisacademy21@gmail.com
                 </a>
               </li>
             </ul>
