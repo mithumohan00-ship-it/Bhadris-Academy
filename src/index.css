@@ -2080,8 +2080,40 @@ select.form-control {
 .footer {
   background-color: var(--white);
   color: var(--text-body);
-  padding: 5.5rem 0 3rem;
+  padding: 0 0 3rem;
   border-top: 1px solid var(--line);
+}
+
+/* ==========================================
+   TOP FOOTER MARQUEE RIBBON
+   ========================================== */
+.footer-marquee-ribbon {
+  width: 100%;
+  background: rgba(247, 247, 245, 0.85);
+  border-bottom: 1px solid rgba(198, 167, 94, 0.28);
+  padding: 0.85rem 0;
+  margin-bottom: 4.5rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  transition: all var(--transition-fast);
+}
+
+.footer-marquee-ribbon:hover {
+  background: rgba(247, 247, 245, 0.98);
+  border-bottom-color: var(--gold-bright);
+}
+
+.footer-marquee {
+  width: 100%;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--navy-deep);
+  display: block;
+  user-select: none;
 }
 
 .footer-grid {
@@ -2414,6 +2446,16 @@ main {
     grid-template-columns: 1fr;
   }
 
+  .footer-marquee-ribbon {
+    padding: 0.65rem 0;
+    margin-bottom: 3rem;
+  }
+
+  .footer-marquee {
+    font-size: 0.74rem;
+    letter-spacing: 0.1em;
+  }
+
   .footer-grid {
     grid-template-columns: 1fr;
     gap: 2.5rem;
@@ -2571,6 +2613,16 @@ main {
   .why-fan-card p {
     font-size: 0.85rem;
     line-height: 1.48;
+  }
+
+  .footer-marquee-ribbon {
+    padding: 0.55rem 0;
+    margin-bottom: 2.5rem;
+  }
+
+  .footer-marquee {
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
   }
 }
 

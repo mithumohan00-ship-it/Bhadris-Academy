@@ -3,6 +3,33 @@ import React from "react";
 export default function Footer() {
   return (
     <footer className="footer">
+      {/* Top Footer Marquee Ribbon: "Right method + Right results" */}
+      <div className="footer-marquee-ribbon" aria-label="Academy philosophy ticker">
+        <marquee
+          className="footer-marquee top-marquee"
+          behavior="scroll"
+          direction="left"
+          scrollamount="6"
+          onMouseEnter={(e) => e.currentTarget.stop()}
+          onMouseLeave={(e) => e.currentTarget.start()}
+        >
+          <span className="marquee-content-row">
+            <span className="marquee-text">Right method + Right results</span>
+            <span className="marquee-sep">✦</span>
+            <span className="marquee-text">Right method + Right results</span>
+            <span className="marquee-sep">✦</span>
+            <span className="marquee-text">Right method + Right results</span>
+            <span className="marquee-sep">✦</span>
+            <span className="marquee-text">Right method + Right results</span>
+            <span className="marquee-sep">✦</span>
+            <span className="marquee-text">Right method + Right results</span>
+            <span className="marquee-sep">✦</span>
+            <span className="marquee-text">Right method + Right results</span>
+            <span className="marquee-sep">✦</span>
+          </span>
+        </marquee>
+      </div>
+
       <div className="container">
         <div className="footer-grid">
           {/* Brand */}
