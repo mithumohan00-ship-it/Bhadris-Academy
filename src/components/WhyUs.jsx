@@ -1,8 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { DoodleArrow, DoodleSparkle } from "./Doodles";
 
 export default function WhyUs() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const advantages = [
     {
@@ -61,7 +73,27 @@ export default function WhyUs() {
     setActiveIndex(index);
   };
 
-  // Compute 3D fanned transform matching the reference image media_1790431232312.png
+  const handleTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const minSwipeDistance = 45;
+    if (distance > minSwipeDistance) {
+      handleNext();
+    } else if (distance < -minSwipeDistance) {
+      handlePrev();
+    }
+  };
+
+  // Compute card transform matching reference: 3D fan on desktop, clean centered slide on mobile
   const getCardStyle = (index) => {
     const total = advantages.length;
     let diff = index - activeIndex;
@@ -72,12 +104,29 @@ export default function WhyUs() {
 
     const absDiff = Math.abs(diff);
 
-    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
-    const isTablet = typeof window !== "undefined" && window.innerWidth < 1024;
+    if (isMobile) {
+      // Mobile: Only active card is visible, preventing awkward background text clipping or overflow
+      const translateX = diff * 50;
+      const scale = absDiff === 0 ? 1 : 0.94;
+      const opacity = absDiff === 0 ? 1 : 0;
+      const visibility = absDiff === 0 ? "visible" : "hidden";
+      const pointerEvents = absDiff === 0 ? "auto" : "none";
+      const zIndex = 15 - absDiff;
 
-    const stepX = isMobile ? 36 : isTablet ? 42 : 46;
-    const stepY = isMobile ? 8 : 12;
-    const stepRotate = isMobile ? 4 : 5.5;
+      return {
+        transform: `translate(-50%, -50%) translateX(${translateX}px) scale(${scale})`,
+        zIndex,
+        opacity,
+        visibility,
+        pointerEvents,
+        transition: "all 0.45s cubic-bezier(0.2, 0.9, 0.3, 1)",
+      };
+    }
+
+    // Desktop: Full 3D fanned deck presentation
+    const stepX = 46;
+    const stepY = 12;
+    const stepRotate = 5.5;
 
     const translateX = diff * stepX;
     const translateY = Math.pow(absDiff, 1.35) * stepY;
@@ -85,8 +134,7 @@ export default function WhyUs() {
     const scale = Math.max(0.86, 1 - absDiff * 0.08);
     const zIndex = 15 - absDiff;
 
-    // Only reveal active card (diff=0) and immediate flanking peek cards (diff=-1, +1)
-    // Any distant cards are completely hidden so they never overlap the student image or bleed out of stage
+    // Reveal active card (diff=0) and flanking peek cards (diff=-1, +1)
     const opacity = absDiff > 1 ? 0 : absDiff === 1 ? 0.72 : 1;
     const pointerEvents = absDiff > 1 ? "none" : "auto";
     const visibility = absDiff > 1 ? "hidden" : "visible";
@@ -133,7 +181,12 @@ export default function WhyUs() {
 
           {/* Right: 3D Fanned Card Deck Presentation (Original White Cards Theme) */}
           <div className="why-fan-deck-container reveal">
-            <div className="why-fan-stage">
+            <div
+              className="why-fan-stage"
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+            >
               {advantages.map((item, idx) => {
                 const isActive = idx === activeIndex;
               return (
