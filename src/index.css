@@ -334,10 +334,10 @@ img {
 }
 
 .header-outer-container {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(104px, 1fr) auto minmax(104px, 1fr);
   align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
+  gap: clamp(0.75rem, 2vw, 1.5rem);
   max-width: var(--max-w);
   width: calc(100% - clamp(24px, 4vw, 56px));
   margin: 0 auto;
@@ -349,6 +349,7 @@ img {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  justify-self: start;
   pointer-events: auto;
   text-decoration: none;
   flex-shrink: 0;
@@ -445,6 +446,7 @@ img {
 .nav-container.fluid-glass-pill {
   pointer-events: auto;
   position: relative;
+  justify-self: center;
   overflow: hidden;
   height: 58px;
   padding: 0.35rem 0.65rem 0.35rem 1.6rem;
@@ -462,6 +464,15 @@ img {
               inset 0 1px 1.5px rgba(255, 255, 255, 0.95),
               0 2px 8px rgba(0, 0, 0, 0.04);
   transition: all var(--transition-smooth);
+}
+
+/* Right balancing spacer ensuring the centered navbar pill stays mathematically dead-center */
+.header-nav-spacer {
+  justify-self: end;
+  width: 104px;
+  height: 1px;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .fluid-glass-pill::before {
@@ -2178,12 +2189,53 @@ main {
   }
 }
 
+@media (max-width: 1200px) and (min-width: 981px) {
+  .header-outer-container {
+    grid-template-columns: minmax(92px, 1fr) auto minmax(92px, 1fr);
+    gap: 0.85rem;
+  }
+
+  .standalone-logo-outside .logo-badge {
+    width: 92px;
+    height: 92px;
+  }
+
+  .header-nav-spacer {
+    width: 92px;
+  }
+
+  .nav-container.fluid-glass-pill {
+    gap: 1.15rem;
+    padding: 0.35rem 0.65rem 0.35rem 1.15rem;
+  }
+
+  .nav-brand-title {
+    font-size: 0.88rem;
+    letter-spacing: 0.08em;
+  }
+
+  .nav-links {
+    gap: 1.15rem;
+  }
+
+  .nav-link {
+    font-size: 0.76rem;
+    padding: 0.25rem 0.2rem;
+  }
+
+  #navCta.btn {
+    padding: 0.45rem 1.1rem;
+    font-size: 0.72rem;
+  }
+}
+
 @media (max-width: 980px) {
   .header {
     top: 0.45rem;
   }
 
   .header-outer-container {
+    grid-template-columns: minmax(68px, 1fr) auto minmax(68px, 1fr);
     width: calc(100% - 1.5rem);
     gap: 0.75rem;
   }
@@ -2191,6 +2243,10 @@ main {
   .standalone-logo-outside .logo-badge {
     width: 68px;
     height: 68px;
+  }
+
+  .header-nav-spacer {
+    width: 68px;
   }
 
   .nav-container.fluid-glass-pill {
@@ -2340,6 +2396,32 @@ main {
 }
 
 @media (max-width: 480px) {
+  .header-outer-container {
+    grid-template-columns: minmax(52px, 1fr) auto minmax(52px, 1fr);
+    width: calc(100% - 1rem);
+    gap: 0.5rem;
+  }
+
+  .standalone-logo-outside .logo-badge {
+    width: 52px;
+    height: 52px;
+  }
+
+  .header-nav-spacer {
+    width: 52px;
+  }
+
+  .nav-container.fluid-glass-pill {
+    height: 44px;
+    padding: 0.25rem 0.65rem;
+    gap: 0.65rem;
+  }
+
+  .nav-brand-title {
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+  }
+
   .why-carousel-section {
     padding: 2.5rem 0;
   }

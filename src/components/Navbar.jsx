@@ -147,6 +147,9 @@ export default function Navbar({ logoVisible = true }) {
               />
             </button>
           </div>
+
+          {/* Right balancing spacer so the navbar pill is mathematically centered */}
+          <div className="header-nav-spacer" aria-hidden="true" />
         </div>
       </header>
 
